@@ -13,6 +13,7 @@ buildscript {
         classpath("org.jetbrains.kotlin:kotlin-serialization:${kotlinVersion}")
         classpath("com.android.tools.build:gradle:7.0.4")
         classpath("io.insert-koin:koin-gradle-plugin:${Versions.koin}")
+        classpath("com.squareup.sqldelight:gradle-plugin:${Versions.sqlDelight}")
 
         val kmpNativeCoroutinesVersion = if (kotlinVersion == "1.6.0") "0.9.0-new-mm" else "0.8.0"
         classpath("com.rickclephas.kmp:kmp-nativecoroutines-gradle-plugin:$kmpNativeCoroutinesVersion")

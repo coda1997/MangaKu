@@ -5,7 +5,7 @@ plugins {
     kotlin("native.cocoapods")
     kotlin("plugin.serialization")
     id("com.android.library")
-    id("io.realm.kotlin") version Versions.realm
+    id("com.squareup.sqldelight")
     id("com.rickclephas.kmp.nativecoroutines")
     id("koin")
 }
@@ -50,7 +50,9 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 with(Dependencies) {
-                    implementation(realmKotlin)
+                    implementation(sqlRuntime)
+                    implementation(sqlCoroutineExtensions)
+
                     implementation(koinCore)
 
                     implementation(ktorCore)
@@ -72,13 +74,17 @@ kotlin {
                 with(Dependencies) {
                     implementation(ktorAndroid)
                     implementation(koinAndroid)
+                    implementation(sqlAndroidDriver)
                 }
             }
         }
 
         val iosMain by getting {
             dependencies {
-                implementation(Dependencies.ktorIos)
+                with(Dependencies) {
+                    implementation(ktorIos)
+                    implementation(sqlNativeDriver)
+                }
             }
         }
 
@@ -96,5 +102,12 @@ kotlin {
         }
 
         val iosTest by getting
+    }
+}
+
+sqldelight {
+    database("MangaDatabase") {
+        packageName = "com.uwaisalqadri.mangaku.db"
+        sourceFolders = listOf("sqldelight")
     }
 }

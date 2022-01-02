@@ -6,6 +6,6 @@ import kotlinx.coroutines.flow.Flow
 interface MyMangaUseCase {
     suspend fun getMyManga(): Flow<List<Manga>>
     suspend fun getMyMangaById(mangaId: String): Flow<List<Manga>>
-    fun addManga(manga: Manga)
-    fun deleteManga(mangaId: String)
+    suspend fun addManga(manga: Manga)
+    suspend fun deleteManga(mangaId: String)
 }

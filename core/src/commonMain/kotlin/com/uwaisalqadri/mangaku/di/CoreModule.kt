@@ -1,9 +1,8 @@
 package com.uwaisalqadri.mangaku.di
 
-import com.uwaisalqadri.mangaku.data.souce.local.DefaultMangaLocalDataSource
-import com.uwaisalqadri.mangaku.data.souce.local.entity.*
 import com.uwaisalqadri.mangaku.data.souce.remote.MangaApi
 import com.uwaisalqadri.mangaku.data.souce.remote.response.ApiException
+import com.uwaisalqadri.mangaku.di.feature.databaseModule
 import com.uwaisalqadri.mangaku.di.feature.mangaModule
 import com.uwaisalqadri.mangaku.utils.Constants
 import io.ktor.client.*
@@ -14,8 +13,6 @@ import io.ktor.client.features.logging.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
-import io.realm.Realm
-import io.realm.RealmConfiguration
 import kotlinx.serialization.json.Json
 import org.koin.core.KoinApplication
 import org.koin.core.context.startKoin
@@ -27,7 +24,7 @@ fun initKoin(appDeclaration: KoinAppDeclaration = {}): KoinApplication {
         appDeclaration()
         modules(
             ktorModule,
-            realmModule,
+            databaseModule(),
             mangaModule
         )
     }
@@ -36,18 +33,6 @@ fun initKoin(appDeclaration: KoinAppDeclaration = {}): KoinApplication {
 }
 
 fun initKoin() = initKoin {} // for iOS
-
-fun createRealmDatabase(): Realm {
-    val configuration = RealmConfiguration.with(schema = setOf(
-        MangaObject::class,
-        AttributesObject::class,
-        CoverImageObject::class,
-        PosterImageObject::class,
-        TitlesObject::class
-    ))
-
-    return Realm.open(configuration = configuration)
-}
 
 fun createJson() = Json {
     isLenient = true
@@ -106,12 +91,6 @@ fun createKtorClient(json: Json) = HttpClient {
         level = LogLevel.ALL
     }
 
-}
-
-
-val realmModule = module {
-    single { DefaultMangaLocalDataSource(get()) }
-    single { createRealmDatabase() }
 }
 
 val ktorModule = module {

@@ -1,0 +1,34 @@
+import com.uwaisalqadri.mangaku.data.souce.remote.response.AttributesItem;
+
+CREATE TABLE MangaEntity(
+  id TEXT NOT NULL PRIMARY KEY,
+  type TEXT NOT NULL,
+  attributes TEXT AS AttributesItem
+);
+
+insertItem:
+INSERT OR REPLACE INTO
+MangaEntity(id, type, attributes)
+VALUES (?, ?, ?);
+--
+selectByQuery:
+SELECT *
+FROM MangaEntity
+WHERE attributes LIKE ('%' || :query || '%')
+OR type LIKE ('%' || :query || '%')
+ORDER BY id;
+
+selectById:
+SELECT *
+FROM MangaEntity
+ORDER BY id=:id;
+
+selectAll:
+SELECT *
+FROM MangaEntity
+ORDER BY id;
+
+--
+deleteItem:
+DELETE FROM MangaEntity
+WHERE id=:id;

@@ -1,8 +1,6 @@
 package com.uwaisalqadri.mangaku.di.feature
 
 import com.uwaisalqadri.mangaku.data.repository.MangaDataStore
-import com.uwaisalqadri.mangaku.data.souce.local.DefaultMangaLocalDataSource
-import com.uwaisalqadri.mangaku.data.souce.local.MangaLocalDataSource
 import com.uwaisalqadri.mangaku.data.souce.remote.MangaApi
 import com.uwaisalqadri.mangaku.data.souce.remote.MangaApiClient
 import com.uwaisalqadri.mangaku.domain.repository.MangaRepository
@@ -18,7 +16,6 @@ import org.koin.dsl.module
 
 val mangaModule = module {
     single<MangaApiClient> { MangaApi(get()) }
-    single<MangaLocalDataSource> { DefaultMangaLocalDataSource(get()) }
     single<MangaRepository> { MangaDataStore(get(), get()) }
     single<BrowseUseCase> { BrowseInteractor(get()) }
     single<DetailUseCase> { DetailInteractor(get()) }

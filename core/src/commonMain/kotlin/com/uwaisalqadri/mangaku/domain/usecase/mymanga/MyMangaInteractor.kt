@@ -20,12 +20,12 @@ class MyMangaInteractor(private val repository: MangaRepository): MyMangaUseCase
         }
     }
 
-    override fun addManga(manga: Manga) {
+    override suspend fun addManga(manga: Manga) {
         val mapper = manga.map()
         repository.addMangaFavorite(manga = mapper)
     }
 
-    override fun deleteManga(mangaId: String) {
+    override suspend fun deleteManga(mangaId: String) {
         repository.deleteMangaFavorite(mangaId = mangaId)
     }
 }

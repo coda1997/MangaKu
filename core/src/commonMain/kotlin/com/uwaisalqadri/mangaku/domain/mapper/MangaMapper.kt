@@ -44,12 +44,50 @@ fun AttributesItem.map(): Attributes {
     )
 }
 
+fun Attributes.map(): AttributesItem {
+    return AttributesItem(
+        ageRating = ageRating,
+        ageRatingGuide = ageRatingGuide,
+        averageRating = averageRating,
+        canonicalTitle = canonicalTitle,
+        chapterCount = chapterCount,
+        coverImage = coverImage?.let { it.map() },
+        description = description,
+        endDate = endDate,
+        favoritesCount = favoritesCount,
+        mangaType = mangaType,
+        nextRelease = nextRelease,
+        popularityRank = popularityRank,
+        posterImage = posterImage?.let { it.map() },
+        ratingRank = ratingRank,
+        serialization = serialization,
+        slug = slug,
+        startDate = startDate,
+        status = status ?: "",
+        subtype = subtype ?: "",
+        synopsis = synopsis ?: "",
+        tba = tba ?: "",
+        titles = titles?.let { it.map() },
+        userCount = userCount ?: 0,
+        volumeCount = volumeCount ?: 0
+    )
+}
+
 fun TitlesItem.map(): Titles {
     return Titles(
         en = en ?: "",
         en_jp = en_jp ?: "",
         en_us = en_us ?: "",
         ja_jp = ja_jp ?: ""
+    )
+}
+
+fun Titles.map(): TitlesItem {
+    return TitlesItem(
+        en = en,
+        en_jp = en_jp,
+        en_us = en_us,
+        ja_jp = ja_jp
     )
 }
 
@@ -64,6 +102,15 @@ fun PosterImageItem.map(): PosterImage {
     )
 }
 
+fun PosterImage.map(): PosterImageItem {
+    return PosterImageItem(
+        large = large,
+        medium = medium,
+        original = original,
+        small = small,
+        tiny = tiny
+    )
+}
 
 fun CoverImageItem.map(): CoverImage {
     return CoverImage(
@@ -74,3 +121,14 @@ fun CoverImageItem.map(): CoverImage {
         tiny = tiny
     )
 }
+
+fun CoverImage.map(): CoverImageItem {
+    return CoverImageItem(
+        large = large,
+        medium = medium,
+        original = original,
+        small = small,
+        tiny = tiny
+    )
+}
+

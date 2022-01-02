@@ -47,7 +47,11 @@ object Dependencies {
     const val ktorAndroid = "io.ktor:ktor-client-android:${Versions.ktor}"
     const val ktorIos = "io.ktor:ktor-client-ios:${Versions.ktor}"
 
-    const val realmKotlin = "io.realm.kotlin:library-base:${Versions.realm}"
+    const val sqlRuntime = "com.squareup.sqldelight:runtime:${Versions.sqlDelight}"
+    const val sqlCoroutineExtensions = "com.squareup.sqldelight:coroutines-extensions:${Versions.sqlDelight}"
+    const val sqlAndroidDriver = "com.squareup.sqldelight:android-driver:${Versions.sqlDelight}"
+    const val sqlNativeDriver = "com.squareup.sqldelight:native-driver:${Versions.sqlDelight}"
+    const val sqliteDriver = "com.squareup.sqldelight:sqlite-driver:${Versions.sqlDelight}"
 
     const val kermitLogger = "co.touchlab:kermit:${Versions.kermit}"
 }

@@ -1,9 +1,7 @@
 package com.uwaisalqadri.mangaku.domain.repository
 
-import com.uwaisalqadri.mangaku.data.souce.local.entity.MangaObject
-import com.uwaisalqadri.mangaku.data.souce.remote.response.MangaDetailResponse
 import com.uwaisalqadri.mangaku.data.souce.remote.response.MangaItem
-import com.uwaisalqadri.mangaku.data.souce.remote.response.MangaResponse
+import com.uwaisalqadri.mangaku.db.MangaEntity
 
 interface MangaRepository {
     suspend fun getManga(): List<MangaItem>
@@ -11,8 +9,8 @@ interface MangaRepository {
     suspend fun getSearchManga(query: String): List<MangaItem>
     suspend fun getDetailManga(mangaId: String): MangaItem?
 
-    suspend fun getFavoriteManga(): List<MangaObject>
-    suspend fun getFavoriteMangaById(mangaId: String): List<MangaObject>
-    fun addMangaFavorite(manga: MangaObject)
-    fun deleteMangaFavorite(mangaId: String)
+    suspend fun getFavoriteManga(): List<MangaEntity>
+    suspend fun getFavoriteMangaById(mangaId: String): List<MangaEntity>
+    suspend fun addMangaFavorite(manga: MangaEntity)
+    suspend fun deleteMangaFavorite(mangaId: String)
 }
